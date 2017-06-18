@@ -1,3 +1,4 @@
+from __future__ import division
 import os
 from flask import Flask, render_template, request
 from flask_socketio import SocketIO
@@ -8,7 +9,6 @@ from flask import request
 from flask import redirect
 
 
-from __future__ import division
 import time
 
 # Import the PCA9685 module.
@@ -34,10 +34,13 @@ def set_servo_pulse(channel, pulse):
 pwm.set_pwm_freq(60)
 
 def dispenseCoin(number):
+    print("dispense coin"+str(number))
     for i in range(number):
+      print("dispense one coin")
       pwm.set_pwm(0, 0, servo_max)
       time.sleep(1)
       pwm.set_pwm(0, 0, servo_min)
+      time.sleep(1)
 
 
 app = Flask(__name__)
@@ -79,12 +82,15 @@ def handlePulled():
 def slotResults():
     global spinAvailable
     matches=request.args.get('matches')
-    print("Matches:"+str(matches))
+    num=int(matches)
+    print("Matches:"+str(num))
+    print(" before dispense")
+    dispenseCoin(num+1)
+    print("after dispense")
     val = jsonify(
         spinAvailable=spinAvailable,
         status="Good"
     )
-    dispenseCoin(matches)
     return val
 
 
