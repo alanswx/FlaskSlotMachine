@@ -8,6 +8,38 @@ from flask import request
 from flask import redirect
 
 
+from __future__ import division
+import time
+
+# Import the PCA9685 module.
+import Adafruit_PCA9685
+
+pwm = Adafruit_PCA9685.PCA9685()
+# Configure min and max servo pulse lengths
+servo_min = 400  # Min pulse length out of 4096
+servo_max = 600  # Max pulse length out of 4096
+
+# Helper function to make setting a servo pulse width simpler.
+def set_servo_pulse(channel, pulse):
+    pulse_length = 1000000    # 1,000,000 us per second
+    pulse_length //= 60       # 60 Hz
+    print('{0}us per period'.format(pulse_length))
+    pulse_length //= 4096     # 12 bits of resolution
+    print('{0}us per bit'.format(pulse_length))
+    pulse *= 1000
+    pulse //= pulse_length
+    pwm.set_pwm(channel, 0, pulse)
+
+# Set frequency to 60hz, good for servos.
+pwm.set_pwm_freq(60)
+
+def dispenseCoin(number):
+    for i in range(number):
+      pwm.set_pwm(0, 0, servo_max)
+      time.sleep(1)
+      pwm.set_pwm(0, 0, servo_min)
+
+
 app = Flask(__name__)
 socketio = SocketIO(app)
 
@@ -52,6 +84,7 @@ def slotResults():
         spinAvailable=spinAvailable,
         status="Good"
     )
+    dispenseCoin(matches)
     return val
 
 
