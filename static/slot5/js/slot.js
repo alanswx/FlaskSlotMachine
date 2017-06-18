@@ -564,7 +564,7 @@ Game.prototype.update = function () {
             break;
         case STATE_RESULTS: // check results
             var matches = this.checkWinLine();
-            $('#results').show();
+            //$('#results').show();
             $('#multiplier').text(matches);
             $('#status').text(BLURB_TBL[matches]);
 

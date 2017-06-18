@@ -1,9 +1,15 @@
+import os
+from flask import Flask, render_template, request
+from flask_socketio import SocketIO
+
 from flask import Flask
 from flask import jsonify
 from flask import request
 from flask import redirect
 
+
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 
 #
@@ -48,25 +54,13 @@ def slotResults():
     )
     return val
 
-@app.route('/lose/')
-def slotLose():
-    global spinAvailable
-    val = jsonify(
-        spinAvailable=spinAvailable,
-        status="Good"
-    )
-    return val
-@app.route('/win/')
-def slotWin():
-    global spinAvailable
-    val = jsonify(
-        spinAvailable=spinAvailable,
-        status="Good"
-    )
-    return val
 
 @app.route('/')
 def index():
     return redirect("/static/slot5/index.html")
 
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    socketio.run(app, host='0.0.0.0', port=port)
 
