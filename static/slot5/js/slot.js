@@ -297,11 +297,11 @@ function SlotGame() {
                 //ctx.shadowOffsetX = 5;
                 //ctx.shadowOffsetY = 5;
                 //ctx.shadowBlur = 5;
-                ctx.drawImage(asset.img, 3, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN);
-                ctx.drawImage(asset.img, 3, (i + ITEM_COUNT) * SLOT_HEIGHT + IMAGE_TOP_MARGIN);
+                ctx.drawImage(asset.img, 16, i * SLOT_HEIGHT + IMAGE_TOP_MARGIN);
+                ctx.drawImage(asset.img, 16, (i + ITEM_COUNT) * SLOT_HEIGHT + IMAGE_TOP_MARGIN);
                 ctx.restore();
-                ctx.fillRect(0, i * SLOT_HEIGHT, 70, SLOT_SEPARATOR_HEIGHT);
-                ctx.fillRect(0, (i + ITEM_COUNT) * SLOT_HEIGHT, 70, SLOT_SEPARATOR_HEIGHT);
+                ctx.fillRect(0, i * SLOT_HEIGHT, 120, SLOT_SEPARATOR_HEIGHT);
+                ctx.fillRect(0, (i + ITEM_COUNT) * SLOT_HEIGHT, 120, SLOT_SEPARATOR_HEIGHT);
             }
         }
 

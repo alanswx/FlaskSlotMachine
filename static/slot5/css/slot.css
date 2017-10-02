@@ -37,12 +37,12 @@ html , body
 #container
 {
     position:absolute;
-    width: 320px;
-    height: 340px;
-    left: 50%;
-    top: 50%;
-    margin-left: -160px;
-    margin-top: -160px;
+    width: 1024px;
+    height: 768px;
+    #left: 50%;
+    #top: 50%;
+    #margin-left: -160px;
+    #margin-top: -160px;
 }
 #container h1
 {
@@ -125,7 +125,7 @@ html , body
 {
     display:block;
     position:relative;
-    height: 180px;
+    height: 360px;
     overflow: hidden;
     text-align: center;
     background:#000;
@@ -134,13 +134,21 @@ html , body
     border-radius:3px;
     -moz-box-shadow:#fff 0px 1px 0px;
 }
-#container #reels canvas
+#container #reels .reel
 {
     width: 87px;
     height: 300px;
     position: relative;
     background: white;
-    border: 2px solid gold;
+    border: 6px solid gold;
+}
+
+#container #reels .gap
+{
+    width: 100px;
+    height: 300px;
+    position: relative;
+    background: black;
 }
 
 #container #overlay 
